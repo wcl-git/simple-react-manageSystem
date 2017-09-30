@@ -15,11 +15,17 @@ const history = syncHistoryWithStore(myhistory, store)
 // history.listen(function (location) { return location })
 
 
+// ReactDOM.render(
+//   <Provider store={store}>
+//     <Router history={history} >
+//         { routes }
+//     </Router>
+//   </Provider>,
+//   document.getElementById('root')
+// );
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history} >
-        { routes }
-    </Router>
+    <Router routes={routes} history={history} />   
   </Provider>,
   document.getElementById('root')
 );

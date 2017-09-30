@@ -21,7 +21,11 @@ const houseManage = (location, cb) => {
     cb(null, require('./pages/house/houseManage').default)
   }, 'houseManage')
 }
-
+const perchedTown = (location, cb) => {
+  require.ensure([], require => {
+    cb(null, require('./pages/house/houseManage').default)
+  }, 'perchedTown')
+}
 
 const Login = (location, cb) => {
   require.ensure([], require => {
@@ -45,17 +49,33 @@ function isLogin(nextState, replaceState) {
   }
 }
 
-const routes = (
-  <Route>
-    <Route path="/" component={App} onEnter={isLogin}>
-      <IndexRoute component={Welcome} />
-      <Route path="/houseManage" getComponent={houseManage} />
+// const routes = (
+//   <Route>
+//     <Route path="/" component={App} onEnter={isLogin}>
+//       <IndexRoute component={Welcome} />
+//       <Route path="/houseManage" getComponent={houseManage} />
 
-      <Route path="/test" getComponent={test} query={{'name': 'dupi'}} />
+//       <Route path="/test" getComponent={test} query={{'name': 'dupi'}} />
 
-    </Route>
-    <Route path="/login" getComponent={Login}></Route>
-  </Route>
-);
+//     </Route>
+//     <Route path="/login" getComponent={Login}></Route>
+//   </Route>
+// );
+
+// 对象方式配置
+const routes = [
+  { path: '/',
+    component: App,
+    onEnter: isLogin,
+    indexRoute: {component:Welcome},
+    childRoutes: [
+      {path: '/houseManage',getComponent: houseManage},
+      {path: '/test', getComponent: test, query: {'name': '哈哈哈'} },
+      {path: '/perchedTown', getComponent: perchedTown}
+    ]
+
+  },
+  {path: '/login', getComponent:Login }
+];
 
 export default routes

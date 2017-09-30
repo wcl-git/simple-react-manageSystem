@@ -30,7 +30,7 @@ export default class popCheck extends Component {
   
   render() {
     return (
-      <div class="page">
+      <div className="page">
         <Button onClick={this.handleClick.bind(this)}>点击按钮</Button>
       </div>
     )

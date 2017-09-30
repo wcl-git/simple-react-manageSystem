@@ -11,7 +11,8 @@
     "starteee": "webpack-dev-server --config ./webpack.development.config.js --process --hot --inline",
     "start": "node webpack.development.config.js --process --hot --inline",
     "build": "webpack --config ./webpack.product.config.js",
-    "lint": "eslint ./ --cache --fix --ignore-pattern .gitignore"
+    "lint": "eslint ./ --cache --fix --ignore-pattern .gitignore",
+    "mock": "node mockserver.js"
   },
   "author": "duxiaodu",
   "devDependencies": {

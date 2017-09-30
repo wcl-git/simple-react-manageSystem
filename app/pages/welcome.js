@@ -33,7 +33,7 @@ export default class welcome extends Component {
     return (
       <div className="welcome">
         <div className="content">
-          <h2 className="title">肚皮叔：行，我等你</h2>
+          <h2 className="title">react：行，数据我真服你撒的谎撒旦</h2>
         </div>
       </div>
     )

@@ -93,11 +93,14 @@ let config = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'app/index.html')
     }),
+    new webpack.HotModuleReplacementPlugin(),
+    
     new OpenBrowserPlugin({
       url: `http://localhost:${PORT}/#/login`
     }),
     // 分析代码
     new BundleAnalyzerPlugin({ analyzerPort: 8188 })
+
   ],
   devtool: 'source-map'
   // devServer: {
@@ -135,10 +138,16 @@ const configObj = webpack(config)
 
 app.use(webpackDevMiddleware(configObj, {
   publicPath: config.output.publicPath,
+  progress: true,
+  historyApiFallback: true,
+  hot: true,
+  inline: true,
   stats: {
     colors: true
   }
 }))
+
+app.use(require('webpack-hot-middleware')(configObj))
 app.listen(5000, function () {
   console.log('Listening on port 5000!')
 })
